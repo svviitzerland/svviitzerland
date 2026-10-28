@@ -4,7 +4,7 @@
 <rect x="0.5" y="0.5" width="1199" height="329" fill="none" stroke="#30363D"/>
 <line x1="640" y1="0" x2="640" y2="330" stroke="#30363D"/>
 <g stroke="#8B949E"><line x1="9" y1="14" x2="19" y2="14"/><line x1="14" y1="9" x2="14" y2="19"/></g><g stroke="#8B949E"><line x1="1181" y1="14" x2="1191" y2="14"/><line x1="1186" y1="9" x2="1186" y2="19"/></g><g stroke="#8B949E"><line x1="9" y1="316" x2="19" y2="316"/><line x1="14" y1="311" x2="14" y2="321"/></g><g stroke="#8B949E"><line x1="1181" y1="316" x2="1191" y2="316"/><line x1="1186" y1="311" x2="1186" y2="321"/></g>
-<text x="40" y="52" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="2.4" fill="#8B949E" text-anchor="start">FEATURED  /  OPEN SOURCE  /  MIT</text>
+<text x="40" y="52" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="2.4" fill="#8B949E" text-anchor="start">STAR PROJECT  /  OPEN SOURCE  /  MIT</text>
 <text x="36" y="148" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="700" font-size="88" letter-spacing="-2" fill="#F0F0F0" textLength="400" lengthAdjust="spacingAndGlyphs">NIMBUS</text>
 <text x="40" y="196" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="26" fill="#F0F0F0">Learn cloud computing by playing.</text>
 <text x="40" y="236" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="1.6" fill="#8B949E" text-anchor="start">BILINGUAL ID / EN  ·  NO SIGN-UP  ·  PHONE OR LAPTOP</text>

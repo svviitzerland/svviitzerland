@@ -16,8 +16,8 @@ OUT = Path(__file__).resolve().parent.parent / "assets"
 
 HANDLE = "svviitzerland"
 NAME = ("FARHAN", "AULIANDA")
-TAGLINE = "FULL-STACK  /  CLOUD  /  AI AGENTS"
-NIMBUS_URL = "nimbus.farhanaulianda.my.id"
+TAGLINE = "FULL STACK  /  CLOUD ENGINEER"
+SITE = "farhanaulianda.my.id"
 
 STACK = [
     ("LANGUAGES", "TypeScript   JavaScript   Python   Go   Rust   Swift   PHP   C#   Bash"),
@@ -32,11 +32,18 @@ STACK = [
 # (prompt shown, text, is_command)
 TERMINAL = [
     (True, "whoami"),
-    (False, "farhan aulianda  //  full-stack · cloud · ai agents"),
-    (True, "cd ~/nimbus && bun run dev"),
-    (False, "[ok] learn cloud computing by playing"),
-    (True, f"open https://{NIMBUS_URL}"),
-    (False, "[ok] bilingual · no sign-up · phone or laptop"),
+    (False, "farhan aulianda  //  full stack & cloud engineer"),
+    (True, "cat about.txt"),
+    (False, "i build products from zero to one,"),
+    (False, "shipping ai-powered tools for real users."),
+    (True, f"open https://{SITE}"),
+]
+
+HIGHLIGHTS = [
+    # icon, title, subtitle
+    ("cloud", "AWS COMMUNITY BUILDER", "serverless"),
+    ("mic", "SPEAKER", "aws summit jakarta 2025"),
+    ("rocket", "ZERO TO ONE", "3 saas products shipped solo"),
 ]
 
 THEMES = {
@@ -44,14 +51,16 @@ THEMES = {
         "ink": "#0A0A0A", "mid": "#6E6E6E", "faint": "#A0A0A0", "hair": "#D0D7DE",
         "panel": "#F6F8FA",
         # hooded hacker palette
-        "cloth": "#161616", "rim": "#5A5A5A", "void": "#000000", "eye": "#FFFFFF",
-        "lid": "#E4E4E4", "logo": "#0A0A0A", "hand": "#9A9A9A", "glow": "#7A7A7A",
+        "cloth": "#141414", "legs": "#3C3C3C", "rim": "#4A4A4A", "void": "#000000",
+        "eye": "#FFFFFF", "lid": "#8C8C8C", "hand": "#9A9A9A", "glow": "#9A9A9A",
+        "wood": "#C2C2C2", "mug": "#5A5A5A",
     },
     "dark": {
         "ink": "#F0F0F0", "mid": "#8B949E", "faint": "#6E7681", "hair": "#30363D",
         "panel": "#010409",
-        "cloth": "#2D333B", "rim": "#6E7681", "void": "#000000", "eye": "#FFFFFF",
-        "lid": "#D0D7DE", "logo": "#0D1117", "hand": "#8B949E", "glow": "#6E7681",
+        "cloth": "#3A414A", "legs": "#262C33", "rim": "#6E7681", "void": "#000000",
+        "eye": "#FFFFFF", "lid": "#D0D7DE", "hand": "#C9D1D9", "glow": "#C9D1D9",
+        "wood": "#30363D", "mug": "#8B949E",
     },
 }
 
@@ -161,7 +170,7 @@ def header(t):
         f'letter-spacing="-3" fill="{t["ink"]}" textLength="740" lengthAdjust="spacingAndGlyphs">{NAME[1]}</text>',
         globe_svg,
         mono(40, h - 26, TAGLINE, t["ink"]),
-        mono(W - 58, h - 26, "NOW  /  NIMBUS", t["ink"], anchor="end"),
+        mono(W - 58, h - 26, SITE.upper(), t["ink"], anchor="end"),
         f'<rect class="blink" x="{W - 50}" y="{h - 37}" width="8" height="13" fill="{t["ink"]}"/>',
         corner_marks(t, h),
     ]
@@ -171,110 +180,137 @@ def header(t):
 
 # ------------------------------------------------------- hooded hacker ----
 
-# 40 x 36 sprite. H cloth, R rim/strings, V face shadow, E eyes, G screen
-# reflection, L laptop lid, C cloud logo, K hands, D desk.
-SPRITE = """
-...............HHHHHHHHHH...............
-.............HHHHHHHHHHHHHH.............
-...........HHHHHHHHHHHHHHHHHH...........
-..........HHHHHHHHHHHHHHHHHHHH..........
-.........HHHHHHHRRRRRRRRHHHHHHH.........
-........HHHHHHHRVVVVVVVVRHHHHHHH........
-........HHHHHHRVVVVVVVVVVRHHHHHH........
-........HHHHHRVVVVVVVVVVVVRHHHHH........
-........HHHHHRVVVVVVVVVVVVRHHHHH........
-........HHHHHRVVVVVVVVVVVVRHHHHH........
-........HHHHHRVVEEVVVVEEVVRHHHHH........
-........HHHHHRVVVVVVVVVVVVRHHHHH........
-........HHHHHRVVVVVVVVVVVVRHHHHH........
-........HHHHHRVVVVVVVVVVVVRHHHHH........
-.......HHHHHHRVVVVVVVVVVVVRHHHHHH.......
-......HHHHHHHHRVVVVVVVVVVRHHHHHHHH......
-.....HHHHHHHHHHRVVVVVVVVRHHHHHHHHHH.....
-....HHHHHHHHHHHHRVVVVVVRHHHHHHHHHHHH....
-...HHHHHHHHHHHHHHRRRRRRHHHHHHHHHHHHHH...
-..HHHHHHHHHHHHHHHRHHHHRHHHHHHHHHHHHHHH..
-..HHHHHHHHHHHHHHHRHHHHRHHHHHHHHHHHHHHH..
-..HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH..
-..HHHHHHLLLLLLLLLLLLLLLLLLLLLLLLHHHHHH..
-..HHHHHHLLLLLLLLLLLLLLLLLLLLLLLLHHHHHH..
-..HHHHHHLLLLLLLLLLLLLLLLLLLLLLLLHHHHHH..
-..HHHHHHLLLLLLLLLLLLLLLLLLLLLLLLHHHHHH..
-..HHHHHHLLLLLLLLLLCCCLLLLLLLLLLLHHHHHH..
-..HHHHHHLLLLLLLLLCCCCCLCCLLLLLLLHHHHHH..
-..HHHHHHLLLLLLLLCCCCCCCCCCLLLLLLHHHHHH..
-..HHHHHHLLLLLLLLCCCCCCCCCCLLLLLLHHHHHH..
-..HHHHHHLLLLLLLLLLLLLLLLLLLLLLLLHHHHHH..
-..HHHHHHLLLLLLLLLLLLLLLLLLLLLLLLHHHHHH..
-..HHHHHHLLLLLLLLLLLLLLLLLLLLLLLLHHHHHH..
-..HHHHHHLLLLLLLLLLLLLLLLLLLLLLLLHHHHHH..
-..HHHHHHLLLLLLLLLLLLLLLLLLLLLLLLHHHHHH..
-DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
-""".strip().splitlines()
+# The figure is described as simple shapes on a 64 x 48 grid and rasterized
+# into pixels, so proportions stay right without hand-placing every square.
+# Later layers paint over earlier ones.
 
-COLOR_OF = {"H": "cloth", "R": "rim", "V": "void", "E": "eye", "L": "lid", "C": "logo", "D": "rim"}
+def _in_poly(x, y, pts):
+    inside = False
+    for (x1, y1), (x2, y2) in zip(pts, pts[1:] + pts[:1]):
+        if (y1 > y) != (y2 > y) and x < x1 + (y - y1) * (x2 - x1) / (y2 - y1):
+            inside = not inside
+    return inside
 
 
-def pixels(rows, x0, y0, px, t, only=None):
-    """Run-length encode sprite rows into rects, one colour group at a time."""
+def _near_seg(x, y, a, b, w):
+    (x1, y1), (x2, y2) = a, b
+    dx, dy = x2 - x1, y2 - y1
+    k = max(0.0, min(1.0, ((x - x1) * dx + (y - y1) * dy) / (dx * dx + dy * dy)))
+    return math.hypot(x - x1 - k * dx, y - y1 - k * dy) <= w / 2
+
+
+SCENE = [
+    # stool and desk
+    ("wood", "poly", [(9, 33), (25, 33), (25, 35), (9, 35)]),
+    ("wood", "poly", [(16, 35), (18, 35), (18, 46), (16, 46)]),
+    ("wood", "poly", [(11, 46), (23, 46), (23, 47), (11, 47)]),
+    ("wood", "poly", [(35, 34), (64, 34), (64, 36), (35, 36)]),
+    ("wood", "poly", [(59, 36), (61, 36), (61, 47), (59, 47)]),
+    # legs
+    ("legs", "seg", (15, 31.5), (31, 32.5), 4.2),
+    ("legs", "seg", (30.5, 32.5), (31.5, 45), 3.4),
+    ("legs", "poly", [(29, 45), (36, 45), (36, 47), (29, 47)]),
+    # hunched torso
+    ("cloth", "poly", [(19, 14), (16, 17), (14, 22), (13.5, 27), (14.5, 32), (16.5, 34.5),
+                       (27, 34.5), (28.5, 29), (28.5, 22), (27, 17), (24, 14)]),
+    # hood: rounded back, peak pushed forward over the face
+    ("cloth", "circle", (21.5, 10.5), 6.8),
+    ("cloth", "poly", [(20, 4), (27, 3.5), (32.5, 6.5), (31.5, 9), (27, 9)]),
+    ("cloth", "poly", [(23, 14), (30, 13), (29, 17), (24, 18)]),
+    # face in shadow, only the inner edge of the hood catches light
+    ("rim", "poly", [(25, 8), (27, 8), (27, 15.5), (25, 15.5)]),
+    ("void", "poly", [(26, 8.5), (30.5, 8.5), (31.8, 11.2), (30.6, 12), (31, 14), (29, 15.6), (26, 15.6)]),
+    ("cloth", "poly", [(24, 3.5), (33.5, 6.2), (33, 8.6), (25, 9)]),
+    # arm reaching for the keyboard
+    ("cloth", "seg", (22, 18), (29.5, 27), 4.6),
+    ("cloth", "seg", (29.5, 27), (39.5, 31.5), 3.6),
+    # laptop: base on the desk, lid tilted back, screen facing the hacker
+    ("lid", "poly", [(37, 32.6), (51, 32.6), (51, 34), (37, 34)]),
+    ("lid", "seg", (50.5, 33), (53, 20.5), 1.6),
+    # mug
+    ("mug", "poly", [(55, 28.5), (59, 28.5), (59, 34), (55, 34)]),
+    ("mug", "poly", [(59, 29.5), (61, 29.5), (61, 32.5), (59, 32.5)]),
+    ("hole", "poly", [(59, 30.5), (60, 30.5), (60, 31.5), (59, 31.5)]),
+]
+
+
+def rasterize(w=64, h=48):
+    grid = [[None] * w for _ in range(h)]
+    for y in range(h):
+        for x in range(w):
+            cx, cy = x + 0.5, y + 0.5
+            for layer in SCENE:
+                role, kind = layer[0], layer[1]
+                hit = (
+                    _in_poly(cx, cy, layer[2]) if kind == "poly"
+                    else math.hypot(cx - layer[2][0], cy - layer[2][1]) <= layer[3] if kind == "circle"
+                    else _near_seg(cx, cy, layer[2], layer[3], layer[4])
+                )
+                if hit:
+                    grid[y][x] = role
+    for y in range(h):
+        for x in range(w):
+            if grid[y][x] == "hole":
+                grid[y][x] = None
+    return grid
+
+
+def pixels(grid, x0, y0, px, t):
     groups = {}
-    for j, row in enumerate(rows):
+    for j, row in enumerate(grid):
         i = 0
         while i < len(row):
-            ch = row[i]
-            if ch == "." or (only and ch not in only):
-                i += 1
-                continue
+            role = row[i]
             k = i
-            while k < len(row) and row[k] == ch:
+            while k < len(row) and row[k] == role:
                 k += 1
-            groups.setdefault(COLOR_OF[ch], []).append(
-                f'<rect x="{x0 + i * px}" y="{y0 + j * px}" width="{(k - i) * px}" height="{px}"/>'
-            )
+            if role:
+                groups.setdefault(role, []).append(
+                    f'<rect x="{x0 + i * px}" y="{y0 + j * px}" width="{(k - i) * px}" height="{px}"/>'
+                )
             i = k
-    return "".join(f'<g fill="{t[c]}">{"".join(r)}</g>' for c, r in groups.items())
+    return "".join(f'<g fill="{t[r]}">{"".join(v)}</g>' for r, v in groups.items())
 
 
 def hacker(x0, y0, px, t):
-    body = [f'<g shape-rendering="crispEdges">', pixels(SPRITE, x0, y0, px, t)]
-    # screen light reflected inside the hood: short scan lines that scroll
-    for n, (row, c0, c1) in enumerate(((12, 15, 20), (13, 17, 24), (14, 15, 22), (15, 18, 23))):
-        body.append(
-            f'<rect class="refl r{n}" x="{x0 + c0 * px}" y="{y0 + row * px}" '
-            f'width="{(c1 - c0) * px}" height="{px - 2}" fill="{t["glow"]}"/>'
-        )
-    # eyelids close now and then
-    body.append(
-        f'<g class="lid" fill="{t["void"]}"><rect x="{x0 + 16 * px}" y="{y0 + 10 * px}" width="{2 * px}" height="{px}"/>'
-        f'<rect x="{x0 + 22 * px}" y="{y0 + 10 * px}" width="{2 * px}" height="{px}"/></g>'
+    P = lambda gx, gy, gw=1, gh=1, **kw: (
+        f'<rect x="{x0 + gx * px}" y="{y0 + gy * px}" width="{gw * px}" height="{gh * px}"'
+        + "".join(f' {k.replace("_", "-")}="{v}"' for k, v in kw.items()) + "/>"
     )
-    # two hands on the keyboard edge, tapping out of phase
-    for side, col in (("hl", 3), ("hr", 34)):
-        body.append(
-            f'<rect class="{side}" x="{x0 + col * px}" y="{y0 + 33 * px}" width="{3 * px}" height="{2 * px}" fill="{t["hand"]}"/>'
-        )
+    body = ['<g shape-rendering="crispEdges">', pixels(rasterize(), x0, y0, px, t)]
+    # light from the screen washes over the face
+    cone = " ".join(f"{x0 + gx * px:.1f},{y0 + gy * px:.1f}" for gx, gy in ((51.5, 21), (51, 33), (30, 15.5), (31, 8)))
+    body.append(f'<polygon class="cone" points="{cone}" fill="{t["glow"]}"/>')
+    body.append(f'<g class="lit" fill="{t["glow"]}">{P(31, 10)}{P(31, 11)}{P(30, 12)}{P(30, 13)}{P(29, 14)}</g>')
+    body.append(f'<g class="eye" fill="{t["eye"]}">{P(29, 10)}</g>')
+    # hand tapping the keys
+    body.append(f'<g class="hand" fill="{t["hand"]}">{P(39, 31, 3, 1)}{P(41, 32)}</g>')
+    # steam off the mug
+    for n, gx in enumerate((56, 57.5)):
+        body.append(f'<g class="steam s{n}" fill="{t["glow"]}">{P(gx, 26)}{P(gx + 1, 24)}{P(gx, 22)}</g>')
     body.append("</g>")
     css = (
-        "@keyframes tapl{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}"
-        "@keyframes tapr{0%,100%{transform:translateY(-6px)}50%{transform:translateY(0)}}"
-        ".hl{animation:tapl .32s steps(1) infinite}.hr{animation:tapr .32s steps(1) infinite}"
-        "@keyframes lid{0%,92%,100%{opacity:0}94%,97%{opacity:1}}.lid{animation:lid 5s steps(1) infinite}"
-        "@keyframes refl{0%,100%{opacity:.15}50%{opacity:.75}}"
-        ".refl{animation:refl 1.6s steps(4) infinite}"
-        ".r1{animation-delay:-.4s}.r2{animation-delay:-.8s}.r3{animation-delay:-1.2s}"
+        "@keyframes tap{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}"
+        ".hand{animation:tap .28s steps(1) infinite}"
+        "@keyframes cone{0%,100%{opacity:.07}30%{opacity:.16}60%{opacity:.04}80%{opacity:.12}}"
+        ".cone{animation:cone 2.2s steps(4) infinite}"
+        "@keyframes lit{0%,100%{opacity:.55}40%{opacity:1}70%{opacity:.35}}.lit{animation:lit 1.2s steps(3) infinite}"
+        "@keyframes eye{0%,90%,100%{opacity:1}93%,96%{opacity:0}}.eye{animation:eye 4.5s steps(1) infinite}"
+        "@keyframes steam{0%{transform:translateY(8px);opacity:0}30%{opacity:.9}100%{transform:translateY(-12px);opacity:0}}"
+        ".steam{animation:steam 2.6s steps(6) infinite}.s1{animation-delay:-1.3s}"
     )
     return "".join(body), css
 
 
 def terminal(t):
     h = 360
-    px = 6
-    sx, sy = 60, h - 40 - 36 * px  # sprite sits on the panel floor
+    px = 5
+    sx, sy = 24, h - 26 - 48 * px  # sprite sits on the panel floor
     sprite, sprite_css = hacker(sx, sy, px, t)
 
     wx, wy, ww, wh = 360, 34, 800, h - 68
-    cw, lh, fs = 12, 34, 20  # monospace cell: 0.6em wide
-    tx, ty = wx + 30, wy + 82
+    cw, lh, fs = 12, 32, 20  # monospace cell: 0.6em wide
+    tx, ty = wx + 30, wy + 76
 
     # timeline: commands type char by char, output lands at once
     cps = 0.055
@@ -341,8 +377,9 @@ def terminal(t):
             f'<rect x="{wx + 16 + i * 20}" y="{wy + 14}" width="11" height="11" fill="none" stroke="{t["ink"]}"/>'
             for i in range(3)
         ),
-        mono(wx + ww / 2, wy + 25, f"farhan@{HANDLE}: ~/nimbus", t["mid"], size=12, anchor="middle", spacing=1),
-        "".join(lines),
+        mono(wx + ww / 2, wy + 25, f"farhan@{HANDLE}: ~", t["mid"], size=12, anchor="middle", spacing=1),
+        f'<clipPath id="screen"><rect x="{wx + 1}" y="{wy + 41}" width="{ww - 1}" height="{wh - 41}"/></clipPath>',
+        f'<g clip-path="url(#screen)">{"".join(lines)}</g>',
         f'<g fill="{t["ink"]}" opacity=".035">{scan}</g>',
     ]
     return svg(h, "\n".join(body), "A hooded hacker typing in a terminal", "".join(css))
@@ -366,7 +403,7 @@ def nimbus(t):
         f'<rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" fill="none" stroke="{t["hair"]}"/>',
         f'<line x1="640" y1="0" x2="640" y2="{h}" stroke="{t["hair"]}"/>',
         corner_marks(t, h),
-        mono(40, 52, "FEATURED  /  OPEN SOURCE  /  MIT", t["mid"], size=12),
+        mono(40, 52, "STAR PROJECT  /  OPEN SOURCE  /  MIT", t["mid"], size=12),
         f'<text x="36" y="148" font-family="{SANS}" font-weight="700" font-size="88" letter-spacing="-2" '
         f'fill="{t["ink"]}" textLength="400" lengthAdjust="spacingAndGlyphs">NIMBUS</text>',
         f'<text x="40" y="196" font-family="{SANS}" font-size="26" fill="{t["ink"]}">Learn cloud computing by playing.</text>',
@@ -465,6 +502,35 @@ XXXXXXXXX
 XXXXXXXXX
 .XXXXXXX.
 """,
+    "globe": """
+..XXXXX..
+.X..X..X.
+X..X.X..X
+XXXXXXXXX
+X..X.X..X
+.X..X..X.
+..XXXXX..
+""",
+    "mic": """
+...XXX...
+...XXX...
+...XXX...
+.X.XXX.X.
+.X..X..X.
+..XXXXX..
+....X....
+..XXXXX..
+""",
+    "rocket": """
+....X....
+...XXX...
+...X.X...
+...XXX...
+..XXXXX..
+.XX.X.XX.
+X...X...X
+....X....
+""",
     "play": """
 XX.......
 XXXX.....
@@ -526,7 +592,7 @@ X......
 
 BUTTONS = {
     # name: (icon, label, sub)
-    "btn-nimbus": ("cloud", "NIMBUS", NIMBUS_URL),
+    "btn-portfolio": ("globe", "PORTFOLIO", SITE),
     "btn-instagram": ("instagram", "INSTAGRAM", "@farhanaulianda.py"),
     "btn-x": ("x", "X / TWITTER", "@farhanaulianda"),
     "btn-email": ("mail", "EMAIL", "hi@farhanaulianda.my.id"),
@@ -571,7 +637,32 @@ def button(t, icon, label, sub, delay):
     return out + f"<title>{label}</title><style>{css}</style>" + "".join(body) + "</svg>\n"
 
 
-SECTIONS = ["WHOAMI", "NOW BUILDING", "TOOLBOX", "ACTIVITY"]
+def highlights(t):
+    h = 132
+    cw = W / len(HIGHLIGHTS)
+    body = [f'<rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" fill="none" stroke="{t["hair"]}"/>']
+    for n, (icon, title, sub) in enumerate(HIGHLIGHTS):
+        x = n * cw
+        if n:
+            body.append(f'<line x1="{x}" y1="0" x2="{x}" y2="{h}" stroke="{t["hair"]}"/>')
+        rows = len(ICONS[icon].strip().splitlines())
+        body += [
+            f'<rect x="{x + 28}" y="30" width="72" height="72" fill="{t["ink"]}"/>',
+            bitmap(ICONS[icon], x + 28 + (72 - 9 * 6) / 2, 30 + (72 - rows * 6) / 2, 6, t["panel"]),
+            mono(x + 122, 58, title, t["ink"], size=17, spacing=1.6, extra=' font-weight="700"'),
+            mono(x + 122, 86, sub, t["mid"], size=14, spacing=.6),
+            f'<rect class="hl h{n}" x="{x}" y="{h - 4}" width="{cw}" height="4" fill="{t["ink"]}"/>',
+        ]
+    k = len(HIGHLIGHTS)
+    css = (
+        f"@keyframes hl{{0%,{100 / k:.2f}%{{opacity:1}}{100 / k + .01:.2f}%,100%{{opacity:0}}}}"
+        f".hl{{opacity:0;animation:hl {k * 2.4}s steps(1) infinite}}"
+        + "".join(f".h{n}{{animation-delay:{-(k - n) * 2.4:.1f}s}}" for n in range(k))
+    )
+    return svg(h, "\n".join(body), "Highlights", css)
+
+
+SECTIONS = ["WHOAMI", "STAR PROJECT", "TOOLBOX", "ACTIVITY"]
 
 
 def section(t, idx, title):
@@ -601,7 +692,7 @@ def section(t, idx, title):
 
 def main():
     OUT.mkdir(exist_ok=True)
-    builds = {"header": header, "terminal": terminal, "nimbus": nimbus,
+    builds = {"header": header, "terminal": terminal, "highlights": highlights, "nimbus": nimbus,
               "stack": stack, "footer": barcode}
     for theme, palette in THEMES.items():
         for name, build in builds.items():

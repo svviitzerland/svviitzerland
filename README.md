@@ -1,12 +1,12 @@
 <a href="https://github.com/svviitzerland">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg">
-    <img src="assets/header-light.svg" alt="Farhan Aulianda — full-stack, cloud, AI agents. Now building Nimbus." width="100%">
+    <img src="assets/header-light.svg" alt="Farhan Aulianda — full stack and cloud engineer" width="100%">
   </picture>
 </a>
 
 <p align="center">
-  <a href="https://nimbus.farhanaulianda.my.id"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-nimbus-dark.svg"><img src="assets/btn-nimbus-light.svg" alt="Nimbus" width="24%"></picture></a>
+  <a href="https://farhanaulianda.my.id"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-portfolio-dark.svg"><img src="assets/btn-portfolio-light.svg" alt="Portfolio farhanaulianda.my.id" width="24%"></picture></a>
   <a href="mailto:hi@farhanaulianda.my.id"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-email-dark.svg"><img src="assets/btn-email-light.svg" alt="Email hi@farhanaulianda.my.id" width="24%"></picture></a>
   <a href="https://instagram.com/farhanaulianda.py"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-instagram-dark.svg"><img src="assets/btn-instagram-light.svg" alt="Instagram @farhanaulianda.py" width="24%"></picture></a>
   <a href="https://twitter.com/farhanaulianda"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-x-dark.svg"><img src="assets/btn-x-light.svg" alt="X @farhanaulianda" width="24%"></picture></a>
@@ -19,18 +19,23 @@
   <img src="assets/sec-1-light.svg" alt="01 Whoami" width="100%">
 </picture>
 
-<a href="https://nimbus.farhanaulianda.my.id">
+<a href="https://farhanaulianda.my.id">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/terminal-dark.svg">
-    <img src="assets/terminal-light.svg" alt="A hooded hacker typing in a terminal: whoami, cd ~/nimbus and bun run dev" width="100%">
+    <img src="assets/terminal-light.svg" alt="A hooded hacker at a laptop next to a terminal: whoami — full stack and cloud engineer, building products from zero to one" width="100%">
   </picture>
 </a>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/highlights-dark.svg">
+  <img src="assets/highlights-light.svg" alt="AWS Community Builder (Serverless). Speaker at AWS Summit Jakarta 2025. Three SaaS products shipped solo." width="100%">
+</picture>
 
 <br><br>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/sec-2-dark.svg">
-  <img src="assets/sec-2-light.svg" alt="02 Now building" width="100%">
+  <img src="assets/sec-2-light.svg" alt="02 Star project" width="100%">
 </picture>
 
 <a href="https://nimbus.farhanaulianda.my.id">
