@@ -28,7 +28,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/highlights-dark.svg">
-  <img src="assets/highlights-light.svg" alt="AWS Community Builder (Serverless). Speaker at AWS Summit Jakarta 2025. Three SaaS products shipped solo." width="100%">
+  <img src="assets/highlights-light.svg" alt="AWS Community Builder (Serverless). Google Student Ambassador." width="100%">
 </picture>
 
 <br><br>

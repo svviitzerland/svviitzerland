@@ -42,8 +42,7 @@ TERMINAL = [
 HIGHLIGHTS = [
     # icon, title, subtitle
     ("cloud", "AWS COMMUNITY BUILDER", "serverless"),
-    ("mic", "SPEAKER", "aws summit jakarta 2025"),
-    ("rocket", "ZERO TO ONE", "3 saas products shipped solo"),
+    ("star", "GOOGLE STUDENT AMBASSADOR", "campus developer community"),
 ]
 
 THEMES = {
@@ -204,8 +203,9 @@ SCENE = [
     ("wood", "poly", [(9, 33), (25, 33), (25, 35), (9, 35)]),
     ("wood", "poly", [(16, 35), (18, 35), (18, 46), (16, 46)]),
     ("wood", "poly", [(11, 46), (23, 46), (23, 47), (11, 47)]),
-    ("wood", "poly", [(35, 34), (64, 34), (64, 36), (35, 36)]),
-    ("wood", "poly", [(59, 36), (61, 36), (61, 47), (59, 47)]),
+    ("wood", "poly", [(34, 29), (64, 29), (64, 31), (34, 31)]),
+    ("wood", "poly", [(59, 31), (61, 31), (61, 47), (59, 47)]),
+    ("wood", "poly", [(36, 31), (38, 31), (38, 47), (36, 47)]),
     # legs
     ("legs", "seg", (15, 31.5), (31, 32.5), 4.2),
     ("legs", "seg", (30.5, 32.5), (31.5, 45), 3.4),
@@ -222,15 +222,15 @@ SCENE = [
     ("void", "poly", [(26, 8.5), (30.5, 8.5), (31.8, 11.2), (30.6, 12), (31, 14), (29, 15.6), (26, 15.6)]),
     ("cloth", "poly", [(24, 3.5), (33.5, 6.2), (33, 8.6), (25, 9)]),
     # arm reaching for the keyboard
-    ("cloth", "seg", (22, 18), (29.5, 27), 4.6),
-    ("cloth", "seg", (29.5, 27), (39.5, 31.5), 3.6),
+    ("cloth", "seg", (22, 18), (30, 24.5), 4.6),
+    ("cloth", "seg", (30, 24.5), (39.5, 26.8), 3.6),
     # laptop: base on the desk, lid tilted back, screen facing the hacker
-    ("lid", "poly", [(37, 32.6), (51, 32.6), (51, 34), (37, 34)]),
-    ("lid", "seg", (50.5, 33), (53, 20.5), 1.6),
+    ("lid", "poly", [(37, 27.6), (51, 27.6), (51, 29), (37, 29)]),
+    ("lid", "seg", (50.5, 28), (53, 15.5), 1.6),
     # mug
-    ("mug", "poly", [(55, 28.5), (59, 28.5), (59, 34), (55, 34)]),
-    ("mug", "poly", [(59, 29.5), (61, 29.5), (61, 32.5), (59, 32.5)]),
-    ("hole", "poly", [(59, 30.5), (60, 30.5), (60, 31.5), (59, 31.5)]),
+    ("mug", "poly", [(55, 23.5), (59, 23.5), (59, 29), (55, 29)]),
+    ("mug", "poly", [(59, 24.5), (61, 24.5), (61, 27.5), (59, 27.5)]),
+    ("hole", "poly", [(59, 25.5), (60, 25.5), (60, 26.5), (59, 26.5)]),
 ]
 
 
@@ -279,15 +279,15 @@ def hacker(x0, y0, px, t):
     )
     body = ['<g shape-rendering="crispEdges">', pixels(rasterize(), x0, y0, px, t)]
     # light from the screen washes over the face
-    cone = " ".join(f"{x0 + gx * px:.1f},{y0 + gy * px:.1f}" for gx, gy in ((51.5, 21), (51, 33), (30, 15.5), (31, 8)))
+    cone = " ".join(f"{x0 + gx * px:.1f},{y0 + gy * px:.1f}" for gx, gy in ((51.5, 16), (51, 28), (30, 15.5), (31, 8)))
     body.append(f'<polygon class="cone" points="{cone}" fill="{t["glow"]}"/>')
     body.append(f'<g class="lit" fill="{t["glow"]}">{P(31, 10)}{P(31, 11)}{P(30, 12)}{P(30, 13)}{P(29, 14)}</g>')
     body.append(f'<g class="eye" fill="{t["eye"]}">{P(29, 10)}</g>')
     # hand tapping the keys
-    body.append(f'<g class="hand" fill="{t["hand"]}">{P(39, 31, 3, 1)}{P(41, 32)}</g>')
+    body.append(f'<g class="hand" fill="{t["hand"]}">{P(39, 26, 3, 1)}{P(41, 27)}</g>')
     # steam off the mug
     for n, gx in enumerate((56, 57.5)):
-        body.append(f'<g class="steam s{n}" fill="{t["glow"]}">{P(gx, 26)}{P(gx + 1, 24)}{P(gx, 22)}</g>')
+        body.append(f'<g class="steam s{n}" fill="{t["glow"]}">{P(gx, 21)}{P(gx + 1, 19)}{P(gx, 17)}</g>')
     body.append("</g>")
     css = (
         "@keyframes tap{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}"
@@ -511,25 +511,15 @@ X..X.X..X
 .X..X..X.
 ..XXXXX..
 """,
-    "mic": """
-...XXX...
-...XXX...
-...XXX...
-.X.XXX.X.
-.X..X..X.
-..XXXXX..
+    "star": """
 ....X....
-..XXXXX..
-""",
-    "rocket": """
 ....X....
 ...XXX...
-...X.X...
-...XXX...
+XXXXXXXXX
+.XXXXXXX.
 ..XXXXX..
-.XX.X.XX.
-X...X...X
-....X....
+..XX.XX..
+.XX...XX.
 """,
     "play": """
 XX.......
