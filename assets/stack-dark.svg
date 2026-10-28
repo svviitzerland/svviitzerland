@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="394" viewBox="0 0 1200 394" role="img" aria-label="Tech stack">
+<title>Tech stack</title>
+<line x1="0" y1="8.5" x2="1200" y2="8.5" stroke="#F0F0F0"/>
+<text x="0" y="42" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="1" fill="#6E7681" text-anchor="start">01</text>
+<text x="48" y="42" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="2.4" fill="#8B949E" text-anchor="start">LANGUAGES</text>
+<text x="250" y="43" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" fill="#F0F0F0" xml:space="preserve">JavaScript   TypeScript   Python   C#   PHP   C++   Bash</text>
+<line x1="0" y1="62.5" x2="1200" y2="62.5" stroke="#30363D"/>
+<text x="0" y="96" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="1" fill="#6E7681" text-anchor="start">02</text>
+<text x="48" y="96" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="2.4" fill="#8B949E" text-anchor="start">FRONTEND</text>
+<text x="250" y="97" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" fill="#F0F0F0" xml:space="preserve">React   Next.js   Vite</text>
+<line x1="0" y1="116.5" x2="1200" y2="116.5" stroke="#30363D"/>
+<text x="0" y="150" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="1" fill="#6E7681" text-anchor="start">03</text>
+<text x="48" y="150" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="2.4" fill="#8B949E" text-anchor="start">BACKEND</text>
+<text x="250" y="151" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" fill="#F0F0F0" xml:space="preserve">Node.js   Bun   FastAPI   Django   Laravel</text>
+<line x1="0" y1="170.5" x2="1200" y2="170.5" stroke="#30363D"/>
+<text x="0" y="204" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="1" fill="#6E7681" text-anchor="start">04</text>
+<text x="48" y="204" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="2.4" fill="#8B949E" text-anchor="start">DATA</text>
+<text x="250" y="205" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" fill="#F0F0F0" xml:space="preserve">Supabase   PostgreSQL   MySQL   MongoDB   SQLite   Redis</text>
+<line x1="0" y1="224.5" x2="1200" y2="224.5" stroke="#30363D"/>
+<text x="0" y="258" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="1" fill="#6E7681" text-anchor="start">05</text>
+<text x="48" y="258" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="2.4" fill="#8B949E" text-anchor="start">AI</text>
+<text x="250" y="259" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" fill="#F0F0F0" xml:space="preserve">LangChain   Strands Agents</text>
+<line x1="0" y1="278.5" x2="1200" y2="278.5" stroke="#30363D"/>
+<text x="0" y="312" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="1" fill="#6E7681" text-anchor="start">06</text>
+<text x="48" y="312" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="2.4" fill="#8B949E" text-anchor="start">INFRA</text>
+<text x="250" y="313" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" fill="#F0F0F0" xml:space="preserve">Docker   Kubernetes   AWS   GCP   Azure   DigitalOcean   Cloudflare</text>
+<line x1="0" y1="332.5" x2="1200" y2="332.5" stroke="#30363D"/>
+<text x="0" y="366" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="1" fill="#6E7681" text-anchor="start">07</text>
+<text x="48" y="366" font-family="'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" letter-spacing="2.4" fill="#8B949E" text-anchor="start">SYSTEM</text>
+<text x="250" y="367" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" fill="#F0F0F0" xml:space="preserve">Arch Linux</text>
+<line x1="0" y1="386.5" x2="1200" y2="386.5" stroke="#F0F0F0"/>
+</svg>
