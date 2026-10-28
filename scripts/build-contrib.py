@@ -79,12 +79,12 @@ def render(t, total, weeks):
     days = [d for w in weeks for d in w]
     current, longest = streaks(days)
     best = max(days, key=lambda d: d[1])
-    pitch, x0, y0 = 20, 92, 112
+    pitch, x0, y0 = 20, 92, 82
     sweep = 4.2  # seconds for the scan beam to cross the grid
     cycle = 10.0
     ncols = len(weeks)
     gx1 = x0 + ncols * pitch
-    h = 396
+    h = 316
 
     dots, months, last_month = [], [], None
     for c, week in enumerate(weeks):
@@ -100,33 +100,33 @@ def render(t, total, weeks):
         first = dt.date.fromisoformat(week[0][0])
         # label a month on the week it starts in, so labels never collide
         if first.month != last_month and first.day <= 7 and c < ncols - 2:
-            months.append(f'<text x="{x0 + c * pitch + 4}" y="{y0 - 14}">{first.strftime("%b").upper()}</text>')
+            months.append(f'<text x="{x0 + c * pitch + 4}" y="{y0 - 10}">{first.strftime("%b").upper()}</text>')
             last_month = first.month
 
     def stat(x, label, value, unit):
         return (
-            f'<text x="{x}" y="{h - 70}" font-family="{MONO}" font-size="11" letter-spacing="2.4" fill="{t["mid"]}">{label}</text>'
-            f'<text x="{x}" y="{h - 26}" font-family="{SANS}" font-weight="700" font-size="40" fill="{t["ink"]}">{value}'
-            f'<tspan font-family="{MONO}" font-weight="400" font-size="13" fill="{t["mid"]}" dx="8">{unit}</tspan></text>'
+            f'<text x="{x}" y="{h - 48}" font-family="{MONO}" font-size="10" letter-spacing="2.2" fill="{t["mid"]}">{label}</text>'
+            f'<text x="{x}" y="{h - 18}" font-family="{SANS}" font-weight="700" font-size="28" fill="{t["ink"]}">{value}'
+            f'<tspan font-family="{MONO}" font-weight="400" font-size="11" fill="{t["mid"]}" dx="6">{unit}</tspan></text>'
         )
 
     best_date = dt.date.fromisoformat(best[0]).strftime("%d %b").upper()
     sx = [40, 340, 640, 940]
     body = [
         f'<rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" fill="none" stroke="{t["hair"]}"/>',
-        f'<text x="40" y="44" font-family="{MONO}" font-size="13" letter-spacing="1.5" fill="{t["ink"]}">'
+        f'<text x="40" y="28" font-family="{MONO}" font-size="12" letter-spacing="1.4" fill="{t["ink"]}">'
         f'&gt; scan --user svviitzerland --range 365d</text>',
-        f'<text class="st st0" x="{W - 40}" y="44" font-family="{MONO}" font-size="13" letter-spacing="1.5" fill="{t["mid"]}" text-anchor="end">SCANNING…</text>',
-        f'<text class="st st1" x="{W - 40}" y="44" font-family="{MONO}" font-size="13" letter-spacing="1.5" fill="{t["ink"]}" text-anchor="end">[ OK ] {total:,} CONTRIBUTIONS</text>',
-        f'<line x1="0" y1="64" x2="{W}" y2="64" stroke="{t["hair"]}"/>',
+        f'<text class="st st0" x="{W - 40}" y="28" font-family="{MONO}" font-size="12" letter-spacing="1.4" fill="{t["mid"]}" text-anchor="end">SCANNING…</text>',
+        f'<text class="st st1" x="{W - 40}" y="28" font-family="{MONO}" font-size="12" letter-spacing="1.4" fill="{t["ink"]}" text-anchor="end">[ OK ] {total:,} CONTRIBUTIONS</text>',
+        f'<line x1="0" y1="44" x2="{W}" y2="44" stroke="{t["hair"]}"/>',
         f'<g font-family="{MONO}" font-size="11" letter-spacing="1.5" fill="{t["mid"]}">{"".join(months)}'
         + "".join(f'<text x="40" y="{y0 + r * pitch + 14}">{d}</text>' for r, d in ((1, "MON"), (3, "WED"), (5, "FRI")))
         + "</g>",
         f'<g>{"".join(dots)}</g>',
         f'<g class="beam"><rect x="-26" y="{y0 - 6}" width="26" height="{7 * pitch + 12}" fill="{t["ink"]}" opacity=".07"/>'
         f'<rect x="-1" y="{y0 - 10}" width="2" height="{7 * pitch + 20}" fill="{t["ink"]}"/></g>',
-        f'<line x1="0" y1="{h - 112}" x2="{W}" y2="{h - 112}" stroke="{t["hair"]}"/>',
-        "".join(f'<line x1="{x - 18}" y1="{h - 112}" x2="{x - 18}" y2="{h}" stroke="{t["hair"]}"/>' for x in sx[1:]),
+        f'<line x1="0" y1="{h - 76}" x2="{W}" y2="{h - 76}" stroke="{t["hair"]}"/>',
+        "".join(f'<line x1="{x - 18}" y1="{h - 76}" x2="{x - 18}" y2="{h}" stroke="{t["hair"]}"/>' for x in sx[1:]),
         stat(sx[0], "LAST 365 DAYS", f"{total:,}", "contributions"),
         stat(sx[1], "CURRENT STREAK", current, "days"),
         stat(sx[2], "LONGEST STREAK", longest, "days"),

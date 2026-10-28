@@ -6,10 +6,10 @@
 </a>
 
 <p align="center">
-  <a href="https://farhanaulianda.my.id"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-portfolio-dark.svg"><img src="assets/btn-portfolio-light.svg" alt="Portfolio farhanaulianda.my.id" width="24%"></picture></a>
-  <a href="mailto:hi@farhanaulianda.my.id"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-email-dark.svg"><img src="assets/btn-email-light.svg" alt="Email hi@farhanaulianda.my.id" width="24%"></picture></a>
-  <a href="https://instagram.com/farhanaulianda.py"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-instagram-dark.svg"><img src="assets/btn-instagram-light.svg" alt="Instagram @farhanaulianda.py" width="24%"></picture></a>
-  <a href="https://twitter.com/farhanaulianda"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-x-dark.svg"><img src="assets/btn-x-light.svg" alt="X @farhanaulianda" width="24%"></picture></a>
+  <a href="https://farhanaulianda.my.id"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-portfolio-dark.svg"><img src="assets/btn-portfolio-light.svg" alt="Portfolio farhanaulianda.my.id" width="21%"></picture></a>
+  <a href="mailto:hi@farhanaulianda.my.id"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-email-dark.svg"><img src="assets/btn-email-light.svg" alt="Email hi@farhanaulianda.my.id" width="21%"></picture></a>
+  <a href="https://instagram.com/farhanaulianda.py"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-instagram-dark.svg"><img src="assets/btn-instagram-light.svg" alt="Instagram @farhanaulianda.py" width="21%"></picture></a>
+  <a href="https://twitter.com/farhanaulianda"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-x-dark.svg"><img src="assets/btn-x-light.svg" alt="X @farhanaulianda" width="21%"></picture></a>
 </p>
 
 <br>
@@ -31,7 +31,7 @@
   <img src="assets/highlights-light.svg" alt="AWS Community Builder (Serverless). Google Student Ambassador." width="100%">
 </picture>
 
-<br><br>
+<br>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/sec-2-dark.svg">
@@ -46,8 +46,8 @@
 </a>
 
 <p align="center">
-  <a href="https://nimbus.farhanaulianda.my.id"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-play-dark.svg"><img src="assets/btn-play-light.svg" alt="Play Nimbus" width="32%"></picture></a>
-  <a href="https://github.com/svviitzerland/nimbus"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-source-dark.svg"><img src="assets/btn-source-light.svg" alt="Nimbus source code" width="32%"></picture></a>
+  <a href="https://nimbus.farhanaulianda.my.id"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-play-dark.svg"><img src="assets/btn-play-light.svg" alt="Play Nimbus" width="26%"></picture></a>
+  <a href="https://github.com/svviitzerland/nimbus"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-source-dark.svg"><img src="assets/btn-source-light.svg" alt="Nimbus source code" width="26%"></picture></a>
 </p>
 
 <details>
@@ -65,8 +65,6 @@ NIMBUS — learn cloud computing by playing
   --cable      ride a data packet along real undersea cables
   --outage     knock out a data center, see the site survive or fall
   --bill       trim a cloud bill
-
-  bilingual (ID / EN) · no sign-up · phone or laptop · MIT
 ```
 
 </details>
@@ -83,7 +81,7 @@ NIMBUS — learn cloud computing by playing
   <img src="assets/stack-light.svg" alt="Languages: TypeScript, JavaScript, Python, Go, Rust, Swift, PHP, C#, Bash. Frontend: Svelte, SvelteKit, React, Next.js, Vue, Tailwind CSS, Vite. Backend: Bun, Node.js, FastAPI, Django, Laravel, Fiber. Data: Supabase, PostgreSQL, MySQL, MongoDB, SQLite, Redis. AI and quantum: LangChain, Strands Agents, MCP, Qiskit. Cloud: AWS, Cloudflare, GCP, Azure, Terraform. Ops: Docker, Kubernetes, GitHub Actions, Arch Linux." width="100%">
 </picture>
 
-<br><br>
+<br>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/sec-4-dark.svg">
@@ -97,7 +95,7 @@ NIMBUS — learn cloud computing by playing
   </picture>
 </a>
 
-<br><br>
+<br>
 
 <p align="center">
   <sub>always open to interesting conversations and collaborations — <a href="mailto:hi@farhanaulianda.my.id">hi@farhanaulianda.my.id</a></sub>

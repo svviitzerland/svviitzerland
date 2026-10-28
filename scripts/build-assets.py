@@ -125,10 +125,10 @@ def globe(cx, cy, r, t, period=24.0, steps=36):
                 f"opacity:{0.1 + 0.9 * k ** 1.6:.2f}}}"
             )
         css.append(f"@keyframes g{ring}{{{''.join(frames)}}}")
-        n = max(6, round(30 * math.cos(lat)))
+        n = max(6, round(30 * math.cos(lat) * min(1, r / 80)))
         for i in range(n):
             delay = -period * i / n
-            dots.append(f'<circle r="3.4" class="g" style="animation-name:g{ring};animation-delay:{delay:.2f}s"/>')
+            dots.append(f'<circle r="{r * 0.036:.2f}" class="g" style="animation-name:g{ring};animation-delay:{delay:.2f}s"/>')
     # a small satellite on a tilted orbit, dimmed while it is behind the globe
     orb_a, orb_b = r * 1.32, r * 0.30
     frames = []
@@ -143,34 +143,31 @@ def globe(cx, cy, r, t, period=24.0, steps=36):
     css.append(f".sat{{animation:sat {period / 2.4:.2f}s linear infinite}}")
     rot = math.degrees(math.atan2(-0.18 * orb_a, orb_a))
     body = [
-        f'<circle cx="{cx}" cy="{cy}" r="{r + 9}" fill="none" stroke="{t["hair"]}"/>',
+        f'<circle cx="{cx}" cy="{cy}" r="{r + 6}" fill="none" stroke="{t["hair"]}"/>',
         f'<ellipse cx="{cx}" cy="{cy}" rx="{orb_a:.1f}" ry="{orb_b:.1f}" fill="none" stroke="{t["hair"]}" '
         f'stroke-dasharray="2 5" transform="rotate({rot:.2f} {cx} {cy})"/>',
         f'<g fill="{t["ink"]}">{"".join(dots)}</g>',
-        f'<rect class="sat" x="-4" y="-4" width="8" height="8" fill="{t["ink"]}"/>',
+        f'<rect class="sat" x="-3" y="-3" width="6" height="6" fill="{t["ink"]}"/>',
     ]
     return "\n".join(body), "".join(css)
 
 
 def header(t):
-    h = 380
-    split = 820
-    globe_svg, globe_css = globe(1010, 190, 96, t)
+    h, band, split = 230, 44, 900
+    globe_svg, globe_css = globe(1050, h / 2, 56, t)
     body = [
         f'<rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" fill="none" stroke="{t["hair"]}"/>',
-        f'<line x1="0" y1="64" x2="{W}" y2="64" stroke="{t["hair"]}"/>',
-        f'<line x1="0" y1="{h - 64}" x2="{W}" y2="{h - 64}" stroke="{t["hair"]}"/>',
-        f'<line x1="{split}" y1="64" x2="{split}" y2="{h - 64}" stroke="{t["hair"]}"/>',
-        mono(40, 38, f"@{HANDLE.upper()}", t["ink"]),
-        mono(W - 40, 38, "README.MD  /  PROFILE", t["mid"], anchor="end"),
-        f'<text x="36" y="182" font-family="{SANS}" font-weight="700" font-size="112" '
-        f'letter-spacing="-3" fill="{t["ink"]}" textLength="560" lengthAdjust="spacingAndGlyphs">{NAME[0]}</text>',
-        f'<text x="36" y="290" font-family="{SANS}" font-weight="700" font-size="112" '
-        f'letter-spacing="-3" fill="{t["ink"]}" textLength="740" lengthAdjust="spacingAndGlyphs">{NAME[1]}</text>',
+        f'<line x1="0" y1="{band}" x2="{W}" y2="{band}" stroke="{t["hair"]}"/>',
+        f'<line x1="0" y1="{h - band}" x2="{W}" y2="{h - band}" stroke="{t["hair"]}"/>',
+        f'<line x1="{split}" y1="{band}" x2="{split}" y2="{h - band}" stroke="{t["hair"]}"/>',
+        mono(32, 28, f"@{HANDLE.upper()}", t["ink"], size=12),
+        mono(W - 32, 28, "README.MD  /  PROFILE", t["mid"], size=12, anchor="end"),
+        f'<text x="30" y="{h / 2 + 27}" font-family="{SANS}" font-weight="700" font-size="76" '
+        f'letter-spacing="-2" fill="{t["ink"]}" textLength="760" lengthAdjust="spacingAndGlyphs">{" ".join(NAME)}</text>',
         globe_svg,
-        mono(40, h - 26, TAGLINE, t["ink"]),
-        mono(W - 58, h - 26, SITE.upper(), t["ink"], anchor="end"),
-        f'<rect class="blink" x="{W - 50}" y="{h - 37}" width="8" height="13" fill="{t["ink"]}"/>',
+        mono(32, h - 17, TAGLINE, t["ink"], size=12),
+        mono(W - 50, h - 17, SITE.upper(), t["ink"], size=12, anchor="end"),
+        f'<rect class="blink" x="{W - 42}" y="{h - 28}" width="7" height="12" fill="{t["ink"]}"/>',
         corner_marks(t, h),
     ]
     css = globe_css + "@keyframes blink{50%{opacity:0}}.blink{animation:blink 1.1s steps(1) infinite}"
@@ -303,14 +300,14 @@ def hacker(x0, y0, px, t):
 
 
 def terminal(t):
-    h = 360
-    px = 5
-    sx, sy = 24, h - 26 - 48 * px  # sprite sits on the panel floor
+    h = 270
+    px = 4
+    sx, sy = 22, h - 20 - 48 * px  # sprite sits on the panel floor
     sprite, sprite_css = hacker(sx, sy, px, t)
 
-    wx, wy, ww, wh = 360, 34, 800, h - 68
-    cw, lh, fs = 12, 32, 20  # monospace cell: 0.6em wide
-    tx, ty = wx + 30, wy + 76
+    wx, wy, ww, wh = 310, 22, 868, h - 44
+    cw, lh, fs = 9.6, 25, 16  # monospace cell: 0.6em wide
+    tx, ty = wx + 24, wy + 60
 
     # timeline: commands type char by char, output lands at once
     cps = 0.055
@@ -349,8 +346,8 @@ def terminal(t):
                 f"{pct(s / total)}{{opacity:1}}}}.c{idx}{{animation:m{idx} {total:.2f}s infinite,c{idx} {total:.2f}s steps(1) infinite}}"
             )
             x = tx + 2 * cw
-            parts.append(f'<rect class="m{idx}" x="{x}" y="{y - 22}" width="{width}" height="{lh - 2}" fill="{t["panel"]}"/>')
-            parts.append(f'<rect class="c{idx}" x="{x}" y="{y - 19}" width="{cw}" height="22" fill="{t["ink"]}"/>')
+            parts.append(f'<rect class="m{idx}" x="{x}" y="{y - 18}" width="{width}" height="{lh - 2}" fill="{t["panel"]}"/>')
+            parts.append(f'<rect class="c{idx}" x="{x}" y="{y - 14}" width="{cw}" height="17" fill="{t["ink"]}"/>')
         lines.append(f'<g class="v{idx}">{"".join(parts)}</g>')
 
     # resting prompt with a blinking block once everything has been typed
@@ -360,25 +357,25 @@ def terminal(t):
     css.append("@keyframes blink{50%{opacity:0}}.blink{animation:blink 1s steps(1) infinite}")
     lines.append(
         f'<g class="vp"><text x="{tx}" y="{py}" font-family="{MONO}" font-size="{fs}" fill="{t["ink"]}">$</text>'
-        f'<rect class="blink" x="{tx + 2 * cw}" y="{py - 19}" width="{cw}" height="22" fill="{t["ink"]}"/></g>'
+        f'<rect class="blink" x="{tx + 2 * cw}" y="{py - 14}" width="{cw}" height="17" fill="{t["ink"]}"/></g>'
     )
 
     scan = "".join(
-        f'<rect x="{wx + 1}" y="{y}" width="{ww - 2}" height="1"/>' for y in range(wy + 46, wy + wh - 2, 4)
+        f'<rect x="{wx + 1}" y="{y}" width="{ww - 2}" height="1"/>' for y in range(wy + 36, wy + wh - 2, 4)
     )
     body = [
         f'<rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" fill="none" stroke="{t["hair"]}"/>',
         corner_marks(t, h),
-        mono(40, 30, "FIG. 01 — AT WORK", t["mid"], size=11),
+        mono(28, 24, "FIG. 01 — AT WORK", t["mid"], size=10),
         sprite,
         f'<rect x="{wx + .5}" y="{wy + .5}" width="{ww}" height="{wh}" fill="{t["panel"]}" stroke="{t["ink"]}"/>',
-        f'<line x1="{wx}" y1="{wy + 40.5}" x2="{wx + ww}" y2="{wy + 40.5}" stroke="{t["ink"]}"/>',
+        f'<line x1="{wx}" y1="{wy + 32.5}" x2="{wx + ww}" y2="{wy + 32.5}" stroke="{t["ink"]}"/>',
         "".join(
-            f'<rect x="{wx + 16 + i * 20}" y="{wy + 14}" width="11" height="11" fill="none" stroke="{t["ink"]}"/>'
+            f'<rect x="{wx + 14 + i * 16}" y="{wy + 12}" width="9" height="9" fill="none" stroke="{t["ink"]}"/>'
             for i in range(3)
         ),
-        mono(wx + ww / 2, wy + 25, f"farhan@{HANDLE}: ~", t["mid"], size=12, anchor="middle", spacing=1),
-        f'<clipPath id="screen"><rect x="{wx + 1}" y="{wy + 41}" width="{ww - 1}" height="{wh - 41}"/></clipPath>',
+        mono(wx + ww / 2, wy + 21, f"farhan@{HANDLE}: ~", t["mid"], size=11, anchor="middle", spacing=1),
+        f'<clipPath id="screen"><rect x="{wx + 1}" y="{wy + 33}" width="{ww - 1}" height="{wh - 33}"/></clipPath>',
         f'<g clip-path="url(#screen)">{"".join(lines)}</g>',
         f'<g fill="{t["ink"]}" opacity=".035">{scan}</g>',
     ]
@@ -398,23 +395,23 @@ XXXXXXXXXXXXXX
 
 
 def nimbus(t):
-    h = 330
+    h, split = 200, 640
     body = [
         f'<rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" fill="none" stroke="{t["hair"]}"/>',
-        f'<line x1="640" y1="0" x2="640" y2="{h}" stroke="{t["hair"]}"/>',
+        f'<line x1="{split}" y1="0" x2="{split}" y2="{h}" stroke="{t["hair"]}"/>',
         corner_marks(t, h),
-        mono(40, 52, "STAR PROJECT  /  OPEN SOURCE  /  MIT", t["mid"], size=12),
-        f'<text x="36" y="148" font-family="{SANS}" font-weight="700" font-size="88" letter-spacing="-2" '
-        f'fill="{t["ink"]}" textLength="400" lengthAdjust="spacingAndGlyphs">NIMBUS</text>',
-        f'<text x="40" y="196" font-family="{SANS}" font-size="26" fill="{t["ink"]}">Learn cloud computing by playing.</text>',
-        mono(40, 236, "BILINGUAL ID / EN  ·  NO SIGN-UP  ·  PHONE OR LAPTOP", t["mid"], size=12, spacing=1.6),
-        mono(40, 286, "SVELTEKIT · SVELTE 5 · TYPESCRIPT · TAILWIND · BUN · CLOUDFLARE", t["ink"], size=12, spacing=1.6),
+        mono(32, 38, "STAR PROJECT  /  OPEN SOURCE  /  MIT", t["mid"], size=11),
+        f'<text x="28" y="106" font-family="{SANS}" font-weight="700" font-size="60" letter-spacing="-1.5" '
+        f'fill="{t["ink"]}" textLength="272" lengthAdjust="spacingAndGlyphs">NIMBUS</text>',
+        f'<text x="32" y="140" font-family="{SANS}" font-size="20" fill="{t["ink"]}">Learn cloud computing by playing.</text>',
+        mono(32, 172, "SVELTEKIT · SVELTE 5 · TYPESCRIPT · TAILWIND · BUN · CLOUDFLARE", t["mid"], size=11, spacing=1.4),
     ]
 
     # right side: a packet rides a cable through the cloud, like the cable lesson
-    a, b = (720, 250), (1120, 250)
-    path = f"M{a[0]} {a[1]} C {a[0] + 60} 70, {b[0] - 60} 70, {b[0]} {b[1]}"
-    cloud_px, cx0, cy0 = 7, 920 - 7 * 7, 108
+    a, b, mid = (710, 150), (1130, 150), (split + W) / 2
+    path = f"M{a[0]} {a[1]} C {a[0] + 60} 30, {b[0] - 60} 30, {b[0]} {b[1]}"
+    cloud_px = 5
+    cx0, cy0 = mid - 7 * cloud_px, 46
     body += [
         f'<path d="{path}" fill="none" stroke="{t["mid"]}" stroke-dasharray="3 6"/>',
         f'<g class="bob" shape-rendering="crispEdges" fill="{t["ink"]}">'
@@ -425,10 +422,10 @@ def nimbus(t):
         + "</g>",
     ]
     for (x, y), label in ((a, "YOU"), (b, "SERVER")):
-        body.append(f'<rect x="{x - 9}" y="{y - 9}" width="18" height="18" fill="{t["ink"]}"/>')
-        body.append(mono(x, y + 36, label, t["mid"], size=11, anchor="middle", spacing=2))
+        body.append(f'<rect x="{x - 7}" y="{y - 7}" width="14" height="14" fill="{t["ink"]}"/>')
+        body.append(mono(x, y + 28, label, t["mid"], size=10, anchor="middle", spacing=2))
     for delay in (0, 0.18, 0.36):
-        size = 10 if delay == 0 else 6
+        size = 8 if delay == 0 else 5
         op = 1 if delay == 0 else 0.35
         body.append(
             f'<rect x="{-size / 2}" y="{-size / 2}" width="{size}" height="{size}" fill="{t["ink"]}" opacity="{op}">'
@@ -436,14 +433,14 @@ def nimbus(t):
             f'keyPoints="0;1;1" keyTimes="0;0.7;1" calcMode="linear"/></rect>'
         )
     body += [
-        mono(920, 298, "LATENCY", t["mid"], size=11, anchor="middle"),
-        f'<g font-family="{MONO}" font-size="14" fill="{t["ink"]}" text-anchor="middle">'
-        + "".join(f'<text class="ms ms{i}" x="920" y="276">{v} ms</text>' for i, v in enumerate((12, 38, 9, 74)))
+        mono(mid, 178, "LATENCY", t["mid"], size=10, anchor="middle"),
+        f'<g font-family="{MONO}" font-size="13" fill="{t["ink"]}" text-anchor="middle">'
+        + "".join(f'<text class="ms ms{i}" x="{mid}" y="158">{v} ms</text>' for i, v in enumerate((12, 38, 9, 74)))
         + "</g>",
     ]
     css = (
-        "@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}"
-        ".bob{animation:bob 3s steps(6) infinite}"
+        "@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}"
+        ".bob{animation:bob 3s steps(4) infinite}"
         "@keyframes ms{0%,24.9%{opacity:1}25%,100%{opacity:0}}"
         ".ms{opacity:0;animation:ms 10.4s steps(1) infinite}"
         + "".join(f".ms{i}{{animation-delay:{-10.4 + i * 2.6:.1f}s}}" for i in range(4))
@@ -458,11 +455,11 @@ def stack(t):
     per tool, and the keys press themselves in a shuffled typing rhythm."""
     import random
 
-    key_h, depth, gap, row_h = 46, 5, 10, 64
-    char_w, pad = 10.2, 18
-    left, right, top = 32, W - 32 - depth, 74
-    label_w = 176
-    h = top + row_h * len(STACK) + 26
+    key_h, depth, gap, row_h = 34, 4, 8, 46
+    char_w, pad = 8.4, 14
+    left, right, top = 28, W - 28 - depth, 56
+    label_w = 150
+    h = top + row_h * len(STACK) + 14
     total_keys = sum(len(tools) for _, tools in STACK)
 
     keys, order = [], []
@@ -471,8 +468,8 @@ def stack(t):
         keys.append(
             f'<rect x="{left + depth}" y="{y + depth}" width="{label_w}" height="{key_h}" fill="{t["mid"]}"/>'
             f'<rect x="{left}" y="{y}" width="{label_w}" height="{key_h}" fill="{t["ink"]}"/>'
-            + mono(left + 14, y + 19, f"{r + 1:02d}", t["panel"], size=10, spacing=1)
-            + mono(left + 14, y + 36, label, t["panel"], size=13, spacing=1.8, extra=' font-weight="700"')
+            + mono(left + 12, y + 13, f"{r + 1:02d}", t["panel"], size=8, spacing=1)
+            + mono(left + 12, y + 27, label, t["panel"], size=11, spacing=1.6, extra=' font-weight="700"')
         )
         # stretch the row to the full width, like a real keyboard
         natural = [len(tool) * char_w + 2 * pad for tool in tools]
@@ -486,7 +483,7 @@ def stack(t):
                 f'<rect x="{x + depth:.1f}" y="{y + depth}" width="{w:.1f}" height="{key_h}" fill="{t["ink"]}"/>'
                 f'<g class="k" style="animation-delay:{{delay}}s">'
                 f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="{key_h}" fill="{t["panel"]}" stroke="{t["ink"]}" stroke-width="2"/>'
-                f'<text x="{x + w / 2:.1f}" y="{y + 29}" font-family="{MONO}" font-size="17" fill="{t["ink"]}" text-anchor="middle" '
+                f'<text x="{x + w / 2:.1f}" y="{y + 22}" font-family="{MONO}" font-size="14" fill="{t["ink"]}" text-anchor="middle" '
                 f'textLength="{len(tool) * char_w:.1f}" lengthAdjust="spacingAndGlyphs">{escape(tool)}</text></g>'
             )
             x += w + gap
@@ -499,20 +496,20 @@ def stack(t):
 
     leds = []
     for n, name in enumerate(("CAPS", "NUM", "SCROLL")):
-        x = W - 300 + n * 92
-        leds.append(f'<rect class="led l{n}" x="{x}" y="28" width="10" height="10" fill="{t["ink"]}"/>')
-        leds.append(f'<rect x="{x + .5}" y="28.5" width="9" height="9" fill="none" stroke="{t["ink"]}"/>')
-        leds.append(mono(x + 18, 38, name, t["mid"], size=11, spacing=1.6))
+        x = W - 268 + n * 82
+        leds.append(f'<rect class="led l{n}" x="{x}" y="15" width="8" height="8" fill="{t["ink"]}"/>')
+        leds.append(f'<rect x="{x + .5}" y="15.5" width="7" height="7" fill="none" stroke="{t["ink"]}"/>')
+        leds.append(mono(x + 14, 23, name, t["mid"], size=10, spacing=1.4))
     body = [
         f'<rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" fill="none" stroke="{t["hair"]}"/>',
         corner_marks(t, h),
-        mono(left, 38, f"TOOLBOX.KBD  —  {total_keys} KEYS", t["mid"], size=11),
+        mono(left, 23, f"TOOLBOX.KBD  —  {total_keys} KEYS", t["mid"], size=10),
         "".join(leds),
-        f'<line x1="0" y1="56" x2="{W}" y2="56" stroke="{t["hair"]}"/>',
+        f'<line x1="0" y1="38" x2="{W}" y2="38" stroke="{t["hair"]}"/>',
         "\n".join(keys),
     ]
     css = (
-        "@keyframes press{0%,3.2%,100%{transform:translate(0,0)}0.4%,2.6%{transform:translate(5px,5px)}}"
+        "@keyframes press{0%,3.2%,100%{transform:translate(0,0)}0.4%,2.6%{transform:translate(4px,4px)}}"
         f".k{{animation:press {period}s steps(1) infinite}}"
         "@keyframes led{0%,100%{opacity:1}50%{opacity:0}}"
         ".led{opacity:0}.l0{opacity:1}.l1{animation:led .9s steps(1) infinite}"
@@ -523,19 +520,19 @@ def stack(t):
 
 def barcode(t):
     """Decorative barcode seeded from the handle, so it never changes."""
-    h = 88
+    h = 62
     bits = "".join(f"{b:08b}" for b in hashlib.sha256(HANDLE.encode()).digest())
     bars, x, i = [], 0, 0
     while x < 860:
         wdt = 1 + int(bits[i % len(bits)]) + int(bits[(i + 7) % len(bits)]) * 2
         if i % 2 == 0:
-            bars.append(f'<rect x="{x}" y="0" width="{wdt}" height="56"/>')
+            bars.append(f'<rect x="{x}" y="0" width="{wdt}" height="40"/>')
         x += wdt + (1 if i % 3 else 2)
         i += 1
     body = [
         f'<g fill="{t["ink"]}" transform="translate(170 0)">' + "".join(bars) + "</g>",
-        f'<rect class="scan" x="170" y="0" width="2" height="56" fill="{t["mid"]}"/>',
-        mono(W / 2, 82, "  ".join(HANDLE.upper()), t["mid"], size=12, anchor="middle", spacing=1),
+        f'<rect class="scan" x="170" y="0" width="2" height="40" fill="{t["mid"]}"/>',
+        mono(W / 2, 58, "  ".join(HANDLE.upper()), t["mid"], size=10, anchor="middle", spacing=1),
     ]
     css = "@keyframes scan{0%{transform:translateX(0)}100%{transform:translateX(858px)}}.scan{animation:scan 3.2s ease-in-out infinite alternate}"
     return svg(h, "\n".join(body), "end of page", css)
@@ -677,7 +674,7 @@ def button(t, icon, label, sub, delay):
 
 
 def highlights(t):
-    h = 132
+    h, box = 88, 52
     cw = W / len(HIGHLIGHTS)
     body = [f'<rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" fill="none" stroke="{t["hair"]}"/>']
     for n, (icon, title, sub) in enumerate(HIGHLIGHTS):
@@ -685,12 +682,13 @@ def highlights(t):
         if n:
             body.append(f'<line x1="{x}" y1="0" x2="{x}" y2="{h}" stroke="{t["hair"]}"/>')
         rows = len(ICONS[icon].strip().splitlines())
+        y0 = (h - box) / 2
         body += [
-            f'<rect x="{x + 28}" y="30" width="72" height="72" fill="{t["ink"]}"/>',
-            bitmap(ICONS[icon], x + 28 + (72 - 9 * 6) / 2, 30 + (72 - rows * 6) / 2, 6, t["panel"]),
-            mono(x + 122, 58, title, t["ink"], size=17, spacing=1.6, extra=' font-weight="700"'),
-            mono(x + 122, 86, sub, t["mid"], size=14, spacing=.6),
-            f'<rect class="hl h{n}" x="{x}" y="{h - 4}" width="{cw}" height="4" fill="{t["ink"]}"/>',
+            f'<rect x="{x + 20}" y="{y0}" width="{box}" height="{box}" fill="{t["ink"]}"/>',
+            bitmap(ICONS[icon], x + 20 + (box - 9 * 4) / 2, y0 + (box - rows * 4) / 2, 4, t["panel"]),
+            mono(x + 90, 40, title, t["ink"], size=14, spacing=1.4, extra=' font-weight="700"'),
+            mono(x + 90, 62, sub, t["mid"], size=12, spacing=.5),
+            f'<rect class="hl h{n}" x="{x}" y="{h - 3}" width="{cw}" height="3" fill="{t["ink"]}"/>',
         ]
     k = len(HIGHLIGHTS)
     css = (
@@ -705,26 +703,26 @@ SECTIONS = ["WHOAMI", "STAR PROJECT", "TOOLBOX", "ACTIVITY"]
 
 
 def section(t, idx, title):
-    h = 96
+    h = 60
     ticks = "".join(
-        f'<line x1="{x + .5}" y1="{h - (8 if x % 100 == 0 else 3)}" x2="{x + .5}" y2="{h}"/>' for x in range(0, W + 1, 20)
+        f'<line x1="{x + .5}" y1="{h - (6 if x % 100 == 0 else 2)}" x2="{x + .5}" y2="{h}"/>' for x in range(0, W + 1, 20)
     )
-    tw = len(title) * 26 * 0.62 + 8
+    tw = len(title) * (17 * 0.6 + 2.5)
     body = [
-        f'<text x="0" y="62" font-family="{SANS}" font-weight="700" font-size="56" fill="{t["ink"]}" '
-        f'textLength="80" lengthAdjust="spacingAndGlyphs">{idx:02d}</text>',
-        f'<rect x="100" y="24" width="2" height="44" fill="{t["ink"]}"/>',
-        f'<text x="124" y="56" font-family="{MONO}" font-size="26" font-weight="700" letter-spacing="3" fill="{t["ink"]}">{title}</text>',
-        f'<rect class="blink" x="{124 + tw + len(title) * 3}" y="36" width="14" height="24" fill="{t["ink"]}"/>',
-        mono(W, 56, f"{idx:02d} / {len(SECTIONS):02d}", t["mid"], size=13, anchor="end"),
+        f'<text x="0" y="40" font-family="{SANS}" font-weight="700" font-size="34" fill="{t["ink"]}" '
+        f'textLength="46" lengthAdjust="spacingAndGlyphs">{idx:02d}</text>',
+        f'<rect x="62" y="14" width="2" height="30" fill="{t["ink"]}"/>',
+        f'<text x="80" y="36" font-family="{MONO}" font-size="17" font-weight="700" letter-spacing="2.5" fill="{t["ink"]}">{title}</text>',
+        f'<rect class="blink" x="{80 + tw + 6:.1f}" y="21" width="10" height="17" fill="{t["ink"]}"/>',
+        mono(W, 36, f"{idx:02d} / {len(SECTIONS):02d}", t["mid"], size=11, anchor="end"),
         f'<g stroke="{t["mid"]}">{ticks}</g>',
         f'<line x1="0" y1="{h - .5}" x2="{W}" y2="{h - .5}" stroke="{t["ink"]}"/>',
-        f'<rect class="sweep" x="0" y="{h - 4}" width="60" height="4" fill="{t["ink"]}"/>',
+        f'<rect class="sweep" x="0" y="{h - 3}" width="48" height="3" fill="{t["ink"]}"/>',
     ]
     css = (
         "@keyframes blink{50%{opacity:0}}.blink{animation:blink 1.1s steps(1) infinite}"
-        f"@keyframes sweep{{0%{{transform:translateX(0)}}100%{{transform:translateX({W - 60}px)}}}}"
-        f".sweep{{animation:sweep 6s steps(57) {-idx * 1.3:.1f}s infinite alternate}}"
+        f"@keyframes sweep{{0%{{transform:translateX(0)}}100%{{transform:translateX({W - 48}px)}}}}"
+        f".sweep{{animation:sweep 6s steps(58) {-idx * 1.3:.1f}s infinite alternate}}"
     )
     return svg(h, "\n".join(body), f"{idx:02d} {title}", css)
 
