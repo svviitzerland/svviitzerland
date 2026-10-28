@@ -80,7 +80,7 @@ NIMBUS — learn cloud computing by playing
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stack-dark.svg">
-  <img src="assets/stack-light.svg" alt="Languages: TypeScript, JavaScript, Python, Go, Rust, Swift, PHP, C#, Bash. Frontend: Svelte, SvelteKit, React, Next.js, Vue, Tailwind CSS, Vite. Backend: Bun, Node.js, FastAPI, Django, Laravel, Fiber. Data: Supabase, PostgreSQL, MySQL, MongoDB, SQLite, Redis. AI and quantum: LangChain, Strands Agents, MCP, Qiskit. Cloud: AWS, Cloudflare Workers, GCP, Azure, Terraform. Ops: Docker, Kubernetes, GitHub Actions, Arch Linux, Neovim." width="100%">
+  <img src="assets/stack-light.svg" alt="Languages: TypeScript, JavaScript, Python, Go, Rust, Swift, PHP, C#, Bash. Frontend: Svelte, SvelteKit, React, Next.js, Vue, Tailwind CSS, Vite. Backend: Bun, Node.js, FastAPI, Django, Laravel, Fiber. Data: Supabase, PostgreSQL, MySQL, MongoDB, SQLite, Redis. AI and quantum: LangChain, Strands Agents, MCP, Qiskit. Cloud: AWS, Cloudflare, GCP, Azure, Terraform. Ops: Docker, Kubernetes, GitHub Actions, Arch Linux." width="100%">
 </picture>
 
 <br><br>

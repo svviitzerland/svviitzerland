@@ -20,13 +20,13 @@ TAGLINE = "FULL STACK  /  CLOUD ENGINEER"
 SITE = "farhanaulianda.my.id"
 
 STACK = [
-    ("LANGUAGES", "TypeScript   JavaScript   Python   Go   Rust   Swift   PHP   C#   Bash"),
-    ("FRONTEND", "Svelte   SvelteKit   React   Next.js   Vue   Tailwind CSS   Vite"),
-    ("BACKEND", "Bun   Node.js   FastAPI   Django   Laravel   Fiber"),
-    ("DATA", "Supabase   PostgreSQL   MySQL   MongoDB   SQLite   Redis"),
-    ("AI / QUANTUM", "LangChain   Strands Agents   MCP   Qiskit"),
-    ("CLOUD", "AWS   Cloudflare Workers   GCP   Azure   Terraform"),
-    ("OPS", "Docker   Kubernetes   GitHub Actions   Arch Linux   Neovim"),
+    ("LANGUAGES", ["TypeScript", "JavaScript", "Python", "Go", "Rust", "Swift", "PHP", "C#", "Bash"]),
+    ("FRONTEND", ["Svelte", "SvelteKit", "React", "Next.js", "Vue", "Tailwind CSS", "Vite"]),
+    ("BACKEND", ["Bun", "Node.js", "FastAPI", "Django", "Laravel", "Fiber"]),
+    ("DATA", ["Supabase", "PostgreSQL", "MySQL", "MongoDB", "SQLite", "Redis"]),
+    ("AI / QUANTUM", ["LangChain", "Strands Agents", "MCP", "Qiskit"]),
+    ("CLOUD", ["AWS", "Cloudflare", "GCP", "Azure", "Terraform"]),
+    ("OPS", ["Docker", "Kubernetes", "GitHub Actions", "Arch Linux"]),
 ]
 
 # (prompt shown, text, is_command)
@@ -454,22 +454,71 @@ def nimbus(t):
 # ----------------------------------------------------------- the rest ----
 
 def stack(t):
-    row = 54
-    top = 8
-    h = top + row * len(STACK) + 8
-    body = [f'<line x1="0" y1="{top + 0.5}" x2="{W}" y2="{top + 0.5}" stroke="{t["ink"]}"/>']
-    for idx, (label, items) in enumerate(STACK):
-        y = top + row * idx
-        base = y + 34
-        body.append(mono(0, base, f"{idx + 1:02d}", t["faint"], size=12, spacing=1))
-        body.append(mono(48, base, label, t["mid"], size=12))
-        body.append(
-            f'<text x="250" y="{base + 1}" font-family="{SANS}" font-size="20" '
-            f'fill="{t["ink"]}" xml:space="preserve">{items}</text>'
+    """The toolbox as a mechanical keyboard: one row per category, one keycap
+    per tool, and the keys press themselves in a shuffled typing rhythm."""
+    import random
+
+    key_h, depth, gap, row_h = 46, 5, 10, 64
+    char_w, pad = 10.2, 18
+    left, right, top = 32, W - 32 - depth, 74
+    label_w = 176
+    h = top + row_h * len(STACK) + 26
+    total_keys = sum(len(tools) for _, tools in STACK)
+
+    keys, order = [], []
+    for r, (label, tools) in enumerate(STACK):
+        y = top + r * row_h
+        keys.append(
+            f'<rect x="{left + depth}" y="{y + depth}" width="{label_w}" height="{key_h}" fill="{t["mid"]}"/>'
+            f'<rect x="{left}" y="{y}" width="{label_w}" height="{key_h}" fill="{t["ink"]}"/>'
+            + mono(left + 14, y + 19, f"{r + 1:02d}", t["panel"], size=10, spacing=1)
+            + mono(left + 14, y + 36, label, t["panel"], size=13, spacing=1.8, extra=' font-weight="700"')
         )
-        line = t["ink"] if idx == len(STACK) - 1 else t["hair"]
-        body.append(f'<line x1="0" y1="{y + row + 0.5}" x2="{W}" y2="{y + row + 0.5}" stroke="{line}"/>')
-    return svg(h, "\n".join(body), "Tech stack")
+        # stretch the row to the full width, like a real keyboard
+        natural = [len(tool) * char_w + 2 * pad for tool in tools]
+        room = right - (left + label_w + gap) - gap * (len(tools) - 1)
+        scale = room / sum(natural)
+        x = left + label_w + gap
+        for tool, nat in zip(tools, natural):
+            w = nat * scale
+            order.append(len(keys))
+            keys.append(
+                f'<rect x="{x + depth:.1f}" y="{y + depth}" width="{w:.1f}" height="{key_h}" fill="{t["ink"]}"/>'
+                f'<g class="k" style="animation-delay:{{delay}}s">'
+                f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="{key_h}" fill="{t["panel"]}" stroke="{t["ink"]}" stroke-width="2"/>'
+                f'<text x="{x + w / 2:.1f}" y="{y + 29}" font-family="{MONO}" font-size="17" fill="{t["ink"]}" text-anchor="middle" '
+                f'textLength="{len(tool) * char_w:.1f}" lengthAdjust="spacingAndGlyphs">{escape(tool)}</text></g>'
+            )
+            x += w + gap
+
+    # every key gets one press per cycle, in a fixed shuffled order
+    period, step = 9.0, 9.0 / len(order)
+    random.Random(HANDLE).shuffle(order)
+    for n, idx in enumerate(order):
+        keys[idx] = keys[idx].replace("{delay}", f"{n * step:.2f}")
+
+    leds = []
+    for n, name in enumerate(("CAPS", "NUM", "SCROLL")):
+        x = W - 300 + n * 92
+        leds.append(f'<rect class="led l{n}" x="{x}" y="28" width="10" height="10" fill="{t["ink"]}"/>')
+        leds.append(f'<rect x="{x + .5}" y="28.5" width="9" height="9" fill="none" stroke="{t["ink"]}"/>')
+        leds.append(mono(x + 18, 38, name, t["mid"], size=11, spacing=1.6))
+    body = [
+        f'<rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" fill="none" stroke="{t["hair"]}"/>',
+        corner_marks(t, h),
+        mono(left, 38, f"TOOLBOX.KBD  —  {total_keys} KEYS", t["mid"], size=11),
+        "".join(leds),
+        f'<line x1="0" y1="56" x2="{W}" y2="56" stroke="{t["hair"]}"/>',
+        "\n".join(keys),
+    ]
+    css = (
+        "@keyframes press{0%,3.2%,100%{transform:translate(0,0)}0.4%,2.6%{transform:translate(5px,5px)}}"
+        f".k{{animation:press {period}s steps(1) infinite}}"
+        "@keyframes led{0%,100%{opacity:1}50%{opacity:0}}"
+        ".led{opacity:0}.l0{opacity:1}.l1{animation:led .9s steps(1) infinite}"
+        ".l2{animation:led 2.7s steps(1) -.4s infinite}"
+    )
+    return svg(h, "\n".join(body), "Toolbox", css)
 
 
 def barcode(t):
